@@ -2,7 +2,7 @@
     <div id="nav">
         <router-link to="/" active-class="active">Home</router-link>
         <router-link to="/about" active-class="active">About</router-link>
-        <router-link to="/crypto" active-class="active">Crypto</router-link>
+        <router-link to="/crypto" active-class="active">Smart Contract</router-link>
     </div>
     <!-- {{ props.loading }} -->
     <Loader v-if="props.loading" />
@@ -24,7 +24,8 @@ export default {
 
 <style lang="scss">
 .active {
-    color: rgb(207, 25, 56);
+    background: rgb(119, 119, 119);
+    color: white;
 }
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -42,12 +43,13 @@ export default {
     min-width: 150px;
     width: max-content;
     margin: 1rem auto;
-    background: ghostwhite;
+    background: rgb(233, 233, 233);
     border-radius: 10px;
     a {
         padding: 1rem 2rem;
         &:hover {
-            background: rgb(233, 233, 255);
+            background: rgb(218, 218, 218);
+            color: gray;
         }
     }
 }

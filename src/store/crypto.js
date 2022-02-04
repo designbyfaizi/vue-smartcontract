@@ -58,6 +58,7 @@ export const useCryptoStore = defineStore('user', () => {
 
                 const count = (await wavePortalContract.totalWaveCount());
                 console.log('count 2: ', count);
+                guestPostsCount.value = count;
                 messageInput = '';
                 setLoader(false)
             }

@@ -18,7 +18,7 @@ console.log(guestPosts)
         </h1>
         <button v-if="!account" class="bg-green-500 py-4 px-3 rounded-lg text-white m-5 hover:bg-green-600" @click="connectWallet">Connect Wallet</button>
         <div v-if="account">
-            <input v-model="messageInput" name="guestBookInfo" maxlength="25" type="text" class="bg-gray-100 py-4 px-3 rounded-lg outline-none">
+            <input v-model="messageInput" name="guestBookInfo" maxlength="45" type="text" class="bg-gray-100 py-4 px-3 rounded-lg outline-none" placeholder="Enter your message!">
             <button @click="wave(messageInput)" class="bg-green-500 py-4 px-3 rounded-lg text-white m-5 hover:bg-green-600">Send</button>
         </div>
         <div v-if="account" class="bg-gray-100 p-4">
