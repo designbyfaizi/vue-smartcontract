@@ -145,8 +145,8 @@ export const useCryptoStore = defineStore('user', () => {
         }
     }
     async function connectWallet(){
+        setLoader(true);
         try{
-            setLoader(true);
             const {ethereum} = window;
             if(!ethereum){
                 alert('Must connect to Metamask!');

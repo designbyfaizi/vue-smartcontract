@@ -2,40 +2,48 @@
     <div class="jokeSection flex flex-col justify-center items-center">
         <img src="@/assets/metamask.svg" alt="Metamask" class="metamask">
         <div class="jokeContainer">
-            <div :style="{color: $store.state.colorCode}" class="counter">
+            <div class="name">
+                <h3>{{name}}</h3>
+            </div>
+            <div class="counter">
                 <h1>
-                    {{ $store.state.counter }}
+                    {{counter}}
                 </h1>
             </div>
-            <div class="counter-squared">
-                {{ $store.state.counter }}
-                <sup>2</sup> = {{$store.getters.counterSquared}}
-            </div>
+            <!-- <div class="counter-squared">
+                {{counter}}
+                <sup>2</sup> = {{doubleCount}}
+            </div> -->
             <div class="buttons">
-                <button @click="$store.dispatch('decreaseCounter')" class="bg-gray-300 hover:bg-gray-400">-</button>
-                <button @click="$store.dispatch('increaseCounter')" class="bg-gray-200 hover:bg-gray-400">+</button>
+                <button @click="decrement" class="bg-gray-300 hover:bg-gray-400">-</button>
+                <button @click="increment" class="bg-gray-200 hover:bg-gray-400">+</button>
             </div>
+            <div @click="reset" class="resetButton bg-red-400 rounded-lg cursor-pointer w-min p-4 m-4 mx-auto hover:bg-red-500">RESET</div>
             <div>
-                <input v-model="colorCode" placeholder="Enter Color Code" type="text">
+                <input placeholder="Enter Color Code" type="text">
             </div>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    name: "Home",
-    computed:{
-        colorCode:{
-            get(){
-                return this.$store.state.colorCode
-            },
-            set(newValue){
-                this.$store.dispatch('setColorCode', newValue)
-            }
-        }
-    }
-};
+<script setup>
+//Destructured values lose reactivity, so we have to use storeToRefs
+import { storeToRefs } from 'pinia';
+import {useCounterStore} from '@/store/counter';
+
+const main = useCounterStore();
+
+const {counter, name} = storeToRefs(main);
+
+
+const {increment, decrement, reset} = main;
+// const {increment} = mapActions(useCounterStore, ["increment"])
+// const {decrement} = mapActions(useCounterStore, ["decrement"])
+
+main.$subscribe((mutation, state) => {
+    console.log('Mutation', mutation);
+    console.log('State', state);
+});
 </script>
 
 <style lang="scss" scoped>

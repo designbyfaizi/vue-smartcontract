@@ -5,7 +5,7 @@
         <router-link to="/crypto" active-class="active">Smart Contract</router-link>
     </div>
     <!-- {{ props.loading }} -->
-    <Loader v-if="props.loading" />
+    <Loader v-if="props.loading == true" />
     <router-view />
 </template>
 
